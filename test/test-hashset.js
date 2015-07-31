@@ -24,6 +24,11 @@ var HashSet = require('../index');
       set.add(key1);
       assert(set.contains(key1));
       assert(!set.contains(missing));
+      });
+
+    test('add(), add()', function() {
+      assert(set.add(key1));
+      assert(!set.add(key1));
     });
 
     test('remove()', function () {

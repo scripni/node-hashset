@@ -88,9 +88,12 @@ private:
 
 		K key = UnwrapValue<K>(args[0]);
 
-		obj->set.insert(key);
-
-		return scope.Close(v8::Undefined());
+		if (obj->set.count(key) > 0) {
+			return scope.Close(v8::Boolean::New(false));
+		} else {
+			obj->set.insert(key);
+			return scope.Close(v8::Boolean::New(true));
+		}
 	}
 
 	static v8::Handle<v8::Value> Contains(const v8::Arguments &args) {
